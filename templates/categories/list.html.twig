@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+	{{ category.name }}
+{% endblock %}
+{% block body %}
+
+	<main class="container">
+		<section class="row">
+			<div class="col-12">
+				<h1>Catégorie :
+					{{ category.name }}</h1>
+					<p class="py-2" style="padding-left: 40px; font-size: 20px;">Voici la liste des véhicules disponibles pour la catégorie <strong>{{ category.name }}</strong>. {{ category.description }}
+					</p>
+			</div>
+			{% for product in products.data %}
+				<div class="col-lg-3 mb-3 col-6" style="display: flex;">
+					<article class="card" style="height: 270px">
+						<div class="card-body">
+							<h3 class="card-title" style="font-size: 25px;">{{ product.brand }}</h3>
+							<h4 class="card-subtitle" style="font-size: 20px;">{{ product.model }}</h4>
+							<p class="card-text">{{ product.description }}</p>
+							<h5 class="card-subtitle text-muted" style="font-size: 17px;">{{ product.price / 100 }}€ / Heure</h5>
+							<a href="{{ path('products_details', {"slug": product.slug}) }}" class="btn btn-primary mb-xl-3 mb-lg-1 mb-md-3 mb-1" style="position: absolute;
+							bottom: 0;font-size: 12px;">Voir le véhicule</a>
+						</div>
+					</article>
+				</div>
+			{% endfor %}
+			{% set path = 'categories_list' %}
+			{% set slug = category.slug %}
+			{% set pages = products.pages %}
+			{% set currentPage = products.page %}
+			{% include "_partials/_pagination.html.twig" %}
+		</section>
+	</main>
+
+{% endblock %}

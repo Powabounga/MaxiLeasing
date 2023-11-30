@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in
+{% endblock %}
+
+{% block body %}
+	<section class="container">
+		<div class="row">
+			<div class="col">
+				<h1>Se connecter</h1>
+				<p style="padding-top: 10px; padding-left: 40px; font-size: 20px;">Connectez-vous pour accéder à votre espace personnel et pouvoir passer une commande.</p>
+				<form method="post">
+					{% if error %}
+						<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+					{% endif %}
+
+					{% if app.user %}
+						<div class="mb-3">
+							You are logged in as
+							{{ app.user.userIdentifier }},
+							<a href="{{ path('app_logout') }}">Logout</a>
+						</div>
+					{% endif %}
+
+					<label for="inputEmail">Email</label>
+					<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+					<label for="inputPassword">Password</label>
+					<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+					<div>
+						<label>
+							<input type="checkbox" name="_remember_me">
+							Remember me
+
+						</label>
+					</div>
+
+					<button class="btn btn-primary my-3" type="submit" style="
+					position: relative;
+					left: 20%;">
+						Se connecter
+					</button>
+					<a href="{{ path('app_forgot_password') }}" class="btn btn-secondary my-3" style="
+					position: relative;
+					left: 20%;">Mot de passe oublié</a>
+				</form>
+			</div>
+		</div>
+	</section>
+{% endblock %}

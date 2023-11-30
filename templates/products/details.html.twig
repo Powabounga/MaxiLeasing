@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Details de
+	{{ product.model }}
+{% endblock %}
+
+{% block body %}
+	<main class="container">
+		<section class="row">
+			<div class="col-12 my-3">
+				<h1>{{ product.brand }} {{ product.model }} </h1>
+			</div>
+			
+			<div class="col-md-6 col-12">
+				<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+					<div class="carousel-inner">
+						{% for image in product.images %}
+							<div class="carousel-item {{ (loop.first ) ? 'active' : ''}}">
+								<img src="/assets/uploads/{{ image.name }}" class="d-block w-100" alt="...">
+							</div>
+						{% endfor %}
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+					  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					  <span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+					  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					  <span class="visually-hidden">Next</span>
+					</button>
+				</div>
+			</div>
+			<div class="col-md-6 col-12">
+				<p>{{ product.description }}</p>
+				<p><strong>Catégorie : {{ product.categories.name }}</strong></p>
+				<p>
+					<strong>Ville  :
+						{{ product.city }}</strong>
+				</p>
+				<p>
+					<strong>Prix :
+						{{ product.price / 100 }}€ par heure</strong>
+				</p>
+				<p>
+					<strong>Stock :
+						{{ product.stock }} pièce(s)</strong>
+				</p>
+				<a href="#" class="btn btn-success">Réserver</a>
+			</div>
+		</section>
+	</main>
+
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+	<main class="container">
+		<section class="row">
+			<div class="col-12">
+				<h1>Catégories</h1>
+				<p style='padding-top: 10px; padding-left: 40px; font-size: 20px;'>Chez MaxiLeasing, nous vous proposons un large choix de véhicules selon vos besoins.</p>
+			</div>
+
+			{% for category in categories %}
+				{% if category.parent == null %}
+					<div class="col-12">
+						<h2>{{ category.name }}</h2>
+					</div>
+				{% else %}
+					<div class="col-md-4 col-sm-6 col-6 mb-sm-2 mb-md-1 mb-2">
+						<div class="card" style="height: 270px">
+							<div class="card-body">
+								<h5 class="card-title">{{ category.name }}</h5>
+								<p class="card-text">						
+									<ul>
+										{% set productsArray = category.products.toArray() %}
+										{% set randomProducts = randomProductsService.getRandomProducts(productsArray) %}
+										{% for product in randomProducts %}
+											<li>{{ product.brand }}</li>
+										{% endfor %}
+									</ul>
+								</p>
+								<a href="{{ path('categories_list', {slug: category.slug}) }}" class="btn btn-primary d-flex align-self-baseline mb-3" style="position: absolute;
+								bottom: 0;">Voir les services</a>
+							</div>
+						</div>
+						<a href="#"></a>
+					</div>
+				{% endif %}
+			{% endfor %}
+		</section>
+	</main>
+
+{% endblock %}

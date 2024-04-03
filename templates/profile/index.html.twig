@@ -18,21 +18,13 @@
 	</style>
 
 	<div class="example-wrapper">
-		<h1>Hello
-			{{ user.firstname }}! ✅</h1>
+		<h1>Bonjour 
+			{{ user.firstname }} !</h1>
 
-		This friendly message is coming from:
+		Vous voici sur la page de votre profil. Bientot vous pourrez :
 		<ul>
-			<li>Your controller at
-				<code>
-					<a href="{{ 'C:/dev/symfony/customservices/src/Controller/ProfileController.php'|file_link(0) }}">src/Controller/ProfileController.php</a>
-				</code>
-			</li>
-			<li>Your template at
-				<code>
-					<a href="{{ 'C:/dev/symfony/customservices/templates/profile/index.html.twig'|file_link(0) }}">templates/profile/index.html.twig</a>
-				</code>
-			</li>
+			<li>Voir et modifier vos informations personnelles</li>
+			<li>Voir vos commandes (passées et actuelles)</li>
 		</ul>
 	</div>
 {% endblock %}

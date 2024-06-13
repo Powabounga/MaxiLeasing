@@ -28,7 +28,7 @@ class CategoriesController extends AbstractController
         $categories = $categoriesRepository->findBy([], ['categoryOrder' => 'ASC']);
         $products = $productsRepository->findAll();
 
-        $randomProducts = $randomProductsService->getRandomProducts($products, 6);
+        $randomProducts = $randomProductsService->getRandomProducts($products, 5);
         return $this->render('categories/index.html.twig', [
             'categories' => $categories,
             'randomProducts' => $randomProducts,
